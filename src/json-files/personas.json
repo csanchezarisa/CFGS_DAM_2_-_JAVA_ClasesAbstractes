@@ -1,0 +1,14 @@
+[
+  private String nif;
+  private String nom;
+  private Data dataNaixement;
+  private especialitatEnum especialitatVehicle;
+  private boolean assignat;
+
+  {
+    "nif": "12345678Z",
+    "nom": "Paco",
+    "dataNaixement": {"dia": 1, "mes": 1, "any": 2000},
+    "especialitatVehicle":
+  }
+]
