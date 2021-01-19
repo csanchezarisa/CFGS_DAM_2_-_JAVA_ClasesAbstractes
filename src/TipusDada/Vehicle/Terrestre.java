@@ -36,4 +36,9 @@ public class Terrestre extends Vehicle {
     public void setCostAveries(int costAveries) {
         this.costAveries = costAveries;
     }
+
+    @Override
+    public double calcularConsum() {
+        return consumMinim + ((carregaActual / capacitatMaxima) * consum) + (numeroAveries * costAveries);
+    }
 }

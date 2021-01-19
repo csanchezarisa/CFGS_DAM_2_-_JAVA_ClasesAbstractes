@@ -48,4 +48,9 @@ public class Maritim extends Vehicle {
     public void setDataConstrucció(Data dataConstrucció) {
         this.dataConstrucció = dataConstrucció;
     }
+
+    @Override
+    public double calcularConsum() {
+        return consumMinim + ((carregaActual / capacitatMaxima) * consum) + (eslora + manega + anyFlotacio) - (dataConstrucció.getDia()) + dataConstrucció.getMes() + dataConstrucció.getAny();
+    }
 }

@@ -26,4 +26,9 @@ public class Aeri extends Vehicle {
     public void setTempsFuncionament(int tempsFuncionament) {
         this.tempsFuncionament = tempsFuncionament;
     }
+
+    @Override
+    public double calcularConsum() {
+        return consumMinim + ((carregaActual / capacitatMaxima) * consum) + (numeroMotors * tempsFuncionament);
+    }
 }
