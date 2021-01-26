@@ -17,6 +17,19 @@ public class Maritim extends Vehicle {
         this.dataConstruccio = dataConstruccio;
     }
 
+    @Override
+    public void mostrarInformacio() {
+        super.mostrarInformacio();
+        System.out.println("\t- Eslora: " + eslora);
+        System.out.println("\t- Manega: " + manega);
+        System.out.println("\t- Any de Flotació: " + anyFlotacio);
+        System.out.println("\t- Data construcció: " + dataConstruccio.getDate());
+        System.out.println("\t- Consum Calculat: " + this.calcularConsum());
+        System.out.println();
+        System.out.println("---------------------------------------");
+        System.out.println();
+    }
+
     public int getEslora() {
         return eslora;
     }

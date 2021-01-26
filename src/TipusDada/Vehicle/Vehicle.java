@@ -22,6 +22,20 @@ public abstract class Vehicle {
         this.identificadorTripulant = identificadorTripulant;
     }
 
+    /** Mostra la informació del vehicle */
+    public void mostrarInformacio() {
+        System.out.println("\t### INFORMACIÓ DEL VEHICLE " + identificador + " ###");
+        System.out.println("\t- Consum Mínim: " + consumMinim);
+        System.out.println("\t- Càrrega Actual: " + carregaActual);
+        System.out.println("\t- Capacitat màxima: " + capacitatMaxima);
+        System.out.println("\t- Consum en KM: " + consum);
+        System.out.println("\t- Tipus de vehicle: " + this.getClass());
+        System.out.println("\t- Tipus de vehicle (anotació): " + tipusVehicle);
+        System.out.println("\t- Identificador: " + identificador);
+        System.out.println("\t- Velocitat Mitja: " + velocitatMitja);
+        System.out.println("\t- Identificador tripulant: " + identificadorTripulant);
+    }
+
     public double getConsumMinim() {
         return consumMinim;
     }

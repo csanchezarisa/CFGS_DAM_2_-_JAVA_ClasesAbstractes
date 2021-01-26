@@ -13,6 +13,18 @@ public class Terrestre extends Vehicle {
         this.costAveries = costAveries;
     }
 
+    @Override
+    public void mostrarInformacio() {
+        super.mostrarInformacio();
+        System.out.println("\t- Número de cavalls: " + numeroCavalls);
+        System.out.println("\t- Número d'averies: " + numeroAveries);
+        System.out.println("\t- Cost d'averies: " + costAveries);
+        System.out.println("\t- Consum Calculat: " + this.calcularConsum());
+        System.out.println();
+        System.out.println("---------------------------------------");
+        System.out.println();
+    }
+
     public int getNumeroCavalls() {
         return numeroCavalls;
     }

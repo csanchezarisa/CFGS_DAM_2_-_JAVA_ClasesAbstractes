@@ -11,6 +11,17 @@ public class Aeri extends Vehicle {
         this.tempsFuncionament = tempsFuncionament;
     }
 
+    @Override
+    public void mostrarInformacio() {
+        super.mostrarInformacio();
+        System.out.println("\t- Número de Motors: " + numeroMotors);
+        System.out.println("\t- Temps de Funcionament: " + tempsFuncionament);
+        System.out.println("\t- Consum Calculat: " + this.calcularConsum());
+        System.out.println();
+        System.out.println("---------------------------------------");
+        System.out.println();
+    }
+
     public int getNumeroMotors() {
         return numeroMotors;
     }
