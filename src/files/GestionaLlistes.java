@@ -1,10 +1,10 @@
 package files;
 
-import TipusDada.Persona.Persona;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import TipusDada.Persona.*;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class GestionaLlistes {
     private static String vehiclesJsonPath;
     private static String personesJsonPath = GestionaLlistes.class.getResource("people.json").getPath();
 
-    public static boolean getPersonas() throws IOException, ParseException {
+    public static ArrayList<Persona> getPersonas() throws IOException, ParseException {
 
         Object obj = new JSONParser().parse(new FileReader(personesJsonPath));
 
@@ -26,10 +26,11 @@ public class GestionaLlistes {
         for (Object object:
              jsonArray) {
             JSONObject jsonObject = (JSONObject) object;
-            personas.add(new Persona((String) jsonObject.get("Name")));
+            personas.add(new Persona(
+                    (String) jsonObject.get("nom")));
         }
 
-        return true;
+        return personas;
 
     }
 

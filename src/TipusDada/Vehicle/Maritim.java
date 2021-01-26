@@ -1,20 +1,20 @@
 package TipusDada.Vehicle;
 
-import TipusDada.Data;
+import TipusDada.DataClass;
 
 public class Maritim extends Vehicle {
 
     private int eslora;
     private int manega;
     private int anyFlotacio;
-    private Data dataConstrucció;
+    private DataClass dataConstruccio;
 
-    public Maritim(double consumMinim, double carregaActual, double capacitatMaxima, double consum, char tipusVehicle, String identificador, double velocitatMitja, String identificadorTripulant, int eslora, int manega, int anyFlotacio, Data dataConstrucció) {
+    public Maritim(double consumMinim, double carregaActual, double capacitatMaxima, double consum, char tipusVehicle, String identificador, double velocitatMitja, String identificadorTripulant, int eslora, int manega, int anyFlotacio, DataClass dataConstruccio) {
         super(consumMinim, carregaActual, capacitatMaxima, consum, tipusVehicle, identificador, velocitatMitja, identificadorTripulant);
         this.eslora = eslora;
         this.manega = manega;
         this.anyFlotacio = anyFlotacio;
-        this.dataConstrucció = dataConstrucció;
+        this.dataConstruccio = dataConstruccio;
     }
 
     public int getEslora() {
@@ -41,16 +41,16 @@ public class Maritim extends Vehicle {
         this.anyFlotacio = anyFlotacio;
     }
 
-    public Data getDataConstrucció() {
-        return dataConstrucció;
+    public DataClass getDataClassConstrucció() {
+        return dataConstruccio;
     }
 
-    public void setDataConstrucció(Data dataConstrucció) {
-        this.dataConstrucció = dataConstrucció;
+    public void setDataClassConstrucció(DataClass DataClassConstrucció) {
+        this.dataConstruccio = DataClassConstrucció;
     }
 
     @Override
     public double calcularConsum() {
-        return consumMinim + ((carregaActual / capacitatMaxima) * consum) + (eslora + manega + anyFlotacio) - (dataConstrucció.getDia()) + dataConstrucció.getMes() + dataConstrucció.getAny();
+        return consumMinim + ((carregaActual / capacitatMaxima) * consum) + (eslora + manega + anyFlotacio) - (dataConstruccio.getDia()) + dataConstruccio.getMes() + dataConstruccio.getAny();
     }
 }

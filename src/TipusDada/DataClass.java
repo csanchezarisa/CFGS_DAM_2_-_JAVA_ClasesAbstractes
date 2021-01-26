@@ -1,12 +1,12 @@
 package TipusDada;
 
-public class Data {
+public class DataClass {
 
     private int dia;
     private int mes;
     private int any;
 
-    public Data(int dia, int mes, int any) {
+    public DataClass(int dia, int mes, int any) {
         this.dia = dia;
         this.mes = mes;
         this.any = any;
