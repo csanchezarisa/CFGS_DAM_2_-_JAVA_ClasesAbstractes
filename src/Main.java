@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    private ArrayList<Persona> personas;
-    private ArrayList<Vehicle> vehicles;
+    private static ArrayList<Persona> personas;
+    private static ArrayList<Vehicle> vehicles;
 
     public static void main(String[] args) throws IOException, ParseException, InterruptedException {
         menuPrincipal();
@@ -19,7 +19,7 @@ public class Main {
 
     /* .: 1. MENÚ PRINCIPAL :. */
     /** Mostra el menú principal i permet treballar amb ell */
-    private static void menuPrincipal() throws InterruptedException {
+    private static void menuPrincipal() throws InterruptedException, IOException, ParseException {
         Scanner teclat = new Scanner(System.in);
         char seleccio;
         do {
@@ -29,9 +29,11 @@ public class Main {
 
             switch (seleccio) {
                 case 'a':
+                    vehicles = GestionaLlistes.getVehicles();
                     break;
 
                 case 'b':
+                    personas = GestionaLlistes.getPersonas();
                     break;
 
                 case 'c':
