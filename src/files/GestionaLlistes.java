@@ -140,6 +140,7 @@ public class GestionaLlistes {
         }
     }
 
+    /** Permet crear el fitxer json de vehicles */
     public static void crearVehicles() {
 
         boolean sortir = false;
@@ -175,7 +176,7 @@ public class GestionaLlistes {
                     break;
 
                 case 't':
-                    terrestre.add(crearAeri());
+                    terrestre.add(crearTerrestre());
                     break;
 
                 case 'q':
@@ -339,6 +340,7 @@ public class GestionaLlistes {
         return jsonObject;
     }
 
+    /** Permet crear JSON amb estructura de vehicle aeri */
     private static JSONObject crearAeri() {
         JSONObject jsonObject = new JSONObject();
 
@@ -432,6 +434,7 @@ public class GestionaLlistes {
         return jsonObject;
     }
 
+    /** Permet crear JSON amb estructura de vehicle terrestre */
     private static JSONObject crearTerrestre() {
         JSONObject jsonObject = new JSONObject();
 
