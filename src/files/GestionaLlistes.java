@@ -346,10 +346,11 @@ public class GestionaLlistes {
         double carregaActual;
         double capacitatMaxima;
         double consum;
-        String tipusVehicle = "m";
+        String tipusVehicle = "a";
         String identificador;
         double velocitatMitja;
-        String identificadorTripulant;
+        int numeroMotors;
+        int tempsFuncionament;
 
         Scanner teclat = new Scanner(System.in);
 
@@ -400,6 +401,33 @@ public class GestionaLlistes {
         catch (Exception e) {
             velocitatMitja = 10;
         }
+
+        System.out.println("Introdueix el número de motors:");
+        try {
+            numeroMotors = teclat.nextInt();
+        }
+        catch (Exception e) {
+            numeroMotors = 10;
+        }
+
+        System.out.println("Introdueix el temps de funcionament:");
+        try {
+            tempsFuncionament = teclat.nextInt();
+        }
+        catch (Exception e) {
+            tempsFuncionament = 10;
+        }
+
+        jsonObject.put("identificador", identificador);
+        jsonObject.put("tipusVehicle", tipusVehicle);
+        jsonObject.put("consumMinim", consumMinim);
+        jsonObject.put("carregaActual", carregaActual);
+        jsonObject.put("capacitatMaxima", capacitatMaxima);
+        jsonObject.put("consum", consum);
+        jsonObject.put("velocitatMitja", velocitatMitja);
+        jsonObject.put("identificadorTripulant", "");
+        jsonObject.put("numeroMotors", numeroMotors);
+        jsonObject.put("tempsFuncionament", tempsFuncionament);
 
         return jsonObject;
     }
@@ -411,10 +439,12 @@ public class GestionaLlistes {
         double carregaActual;
         double capacitatMaxima;
         double consum;
-        String tipusVehicle = "m";
+        String tipusVehicle = "t";
         String identificador;
         double velocitatMitja;
-        String identificadorTripulant;
+        int numeroCavalls;
+        int numeroAveries;
+        int costAveries;
 
         Scanner teclat = new Scanner(System.in);
 
@@ -465,6 +495,42 @@ public class GestionaLlistes {
         catch (Exception e) {
             velocitatMitja = 10;
         }
+
+        System.out.println("Introdueix el número de cavalls:");
+        try {
+            numeroCavalls = teclat.nextInt();
+        }
+        catch (Exception e) {
+            numeroCavalls = 10;
+        }
+
+        System.out.println("Introdueix el número d'averies:");
+        try {
+            numeroAveries = teclat.nextInt();
+        }
+        catch (Exception e) {
+            numeroAveries = 10;
+        }
+
+        System.out.println("Introdueix el cost de les averíes");
+        try {
+            costAveries = teclat.nextInt();
+        }
+        catch (Exception e) {
+            costAveries = 10;
+        }
+
+        jsonObject.put("identificador", identificador);
+        jsonObject.put("tipusVehicle", tipusVehicle);
+        jsonObject.put("consumMinim", consumMinim);
+        jsonObject.put("carregaActual", carregaActual);
+        jsonObject.put("capacitatMaxima", capacitatMaxima);
+        jsonObject.put("consum", consum);
+        jsonObject.put("velocitatMitja", velocitatMitja);
+        jsonObject.put("identificadorTripulant", "");
+        jsonObject.put("numeroCavalls", numeroCavalls);
+        jsonObject.put("numeroAveries", numeroAveries);
+        jsonObject.put("costAveries", costAveries);
 
         return jsonObject;
     }
