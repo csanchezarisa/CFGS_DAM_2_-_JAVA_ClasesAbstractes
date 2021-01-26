@@ -8,14 +8,14 @@ public class Persona {
     private String nif;
     private String nom;
     private DataClass dataNaixement;
-    private especialitatEnum especialitatVehicle;
+    private char especialitatVehicle;
     private boolean assignat;
 
     public Persona(String nom) {
         this.nom = nom;
     }
 
-    public Persona(String nif, String nom, DataClass dataNaixement, especialitatEnum especialitatVehicle, boolean assignat) {
+    public Persona(String nif, String nom, DataClass dataNaixement, char especialitatVehicle, boolean assignat) {
         this.nif = nif;
         this.nom = nom;
         this.dataNaixement = dataNaixement;
