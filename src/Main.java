@@ -42,14 +42,17 @@ public class Main {
 
                 case 'e':
                     GestionaLlistes.crearVehicles();
+                    stop();
                     break;
 
                 case 'f':
                     GestionaLlistes.crearPersonas();
+                    stop();
                     break;
 
                 case 'g':
                     System.out.println("Sortint...");
+                    stop();
                     break;
 
                 default:

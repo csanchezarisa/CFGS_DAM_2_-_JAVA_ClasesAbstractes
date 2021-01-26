@@ -144,7 +144,7 @@ public class GestionaLlistes {
     public static void crearVehicles() {
 
         boolean sortir = false;
-        JSONArray vehicles = new JSONArray();
+        JSONObject vehicles = new JSONObject();
         JSONArray maritims = new JSONArray();
         JSONArray aeris = new JSONArray();
         JSONArray terrestre = new JSONArray();
@@ -187,9 +187,9 @@ public class GestionaLlistes {
         }
         while (!sortir);
 
-        vehicles.add(0, maritims);
-        vehicles.add(1, terrestre);
-        vehicles.add(2, aeris);
+        vehicles.put("maritims", maritims);
+        vehicles.put("aeris", aeris);
+        vehicles.put("terrestres", terrestre);
 
         try (FileWriter file = new FileWriter(vehiclesJsonPath, false)) {
             file.write(vehicles.toJSONString());
