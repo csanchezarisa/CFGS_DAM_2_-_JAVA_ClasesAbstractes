@@ -40,7 +40,14 @@ public class Main {
                     break;
 
                 case 'd':
-
+                    // Si no s'ha inicialitzat la llista, mostra un error. Sino, mostra les informacions
+                    if (!vehicles.isEmpty()) {
+                        GestionaLlistes.mostrarInformacioVehicles(vehicles);
+                    }
+                    else {
+                        System.out.println("No hi ha cap vehicle inicialitzat! Inicialitza'n algún primer.");
+                        stop();
+                    }
                     break;
 
                 case 'e':

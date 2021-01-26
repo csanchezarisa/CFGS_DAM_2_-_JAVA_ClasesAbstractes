@@ -168,6 +168,14 @@ public class GestionaLlistes {
         return vehicles;
     }
 
+    public static void mostrarInformacioVehicles(ArrayList<Vehicle> vehicles) throws InterruptedException {
+        for (Vehicle vehicle:
+             vehicles) {
+            vehicle.mostrarInformacio();
+            Thread.sleep(1000);
+        }
+    }
+
     /** Va demanant les dades de les persones per després crear
      * el json people.json amb aquestes dades */
     public static void crearPersonas() {
