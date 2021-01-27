@@ -52,6 +52,7 @@ public class Main {
 
                 case 'c':
                     if (!vehicles.isEmpty()) {
+                        netejarPantalla();
                         vehicles = GestionaLlistes.assignarTripulants(vehicles, personas);
                     }
                     else {
@@ -63,6 +64,7 @@ public class Main {
                 case 'd':
                     // Si no s'ha inicialitzat la llista, mostra un error. Sino, mostra les informacions
                     if (!vehicles.isEmpty()) {
+                        netejarPantalla();
                         GestionaLlistes.mostrarInformacioVehicles(vehicles);
                     }
                     else {

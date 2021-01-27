@@ -197,7 +197,7 @@ public class GestionaLlistes {
      * @param vehicles ArrayList de vehicles, als quals assignar tripulants
      * @param personas ArrayList de persones per poder ser assignades
      * @return ArrayList de vehicles amb les modificacions*/
-    public static ArrayList<Vehicle> assignarTripulants(ArrayList<Vehicle> vehicles, ArrayList<Persona> personas) {
+    public static ArrayList<Vehicle> assignarTripulants(ArrayList<Vehicle> vehicles, ArrayList<Persona> personas) throws InterruptedException {
 
         // Recorre l'ArrayList de vehicles
         for (Vehicle vehicle:
@@ -217,6 +217,12 @@ public class GestionaLlistes {
                         vehicle.setIdentificadorTripulant( persona.getNif() );
                         persona.setAssignat(true);
 
+                        System.out.println("##########################################" +
+                                "\nLa persona " + persona.getNom() + " amb nif " + persona.getNif() +
+                                "\nHa estat assignada al vehicle " + vehicle.getIdentificador() +
+                                "\n##########################################");
+
+                        Thread.sleep(1000);
                         break;
                     }
 

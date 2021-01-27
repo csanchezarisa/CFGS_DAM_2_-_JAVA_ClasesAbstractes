@@ -56,6 +56,10 @@ public abstract class Vehicle {
         return tipusVehicle;
     }
 
+    public String getIdentificador() {
+        return identificador;
+    }
+
     public abstract double calcularConsum();
 
 }

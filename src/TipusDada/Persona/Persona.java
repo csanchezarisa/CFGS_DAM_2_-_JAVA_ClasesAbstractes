@@ -38,4 +38,8 @@ public class Persona {
     public String getNif() {
         return nif;
     }
+
+    public String getNom() {
+        return nom;
+    }
 }
