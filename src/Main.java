@@ -28,6 +28,7 @@ public class Main {
             seleccio = teclat.next().toLowerCase().charAt(0);
 
             switch (seleccio) {
+                // Captura dades del JSON de vehicles
                 case 'a':
                     vehicles = GestionaLlistes.getVehicles();
 
@@ -39,6 +40,7 @@ public class Main {
                     stop();
                     break;
 
+                // Captura dades del JSON de persones
                 case 'b':
                     personas = GestionaLlistes.getPersonas();
 
@@ -50,17 +52,19 @@ public class Main {
                     stop();
                     break;
 
+                // Si hi ha vehicles i persones, assigna tripulants
                 case 'c':
-                    if (!vehicles.isEmpty()) {
+                    if (!vehicles.isEmpty() && !personas.isEmpty()) {
                         netejarPantalla();
                         vehicles = GestionaLlistes.assignarTripulants(vehicles, personas);
                     }
                     else {
-                        System.out.println("No hi ha cap vehicle inicialitzat! Inicialitza'n algún primer.");
+                        System.out.println("Els llistats no estan inicialitzats! Inicialitza'ls primer..");
                         stop();
                     }
                     break;
 
+                // Si hi ha vehicles, en mostra la informació
                 case 'd':
                     // Si no s'ha inicialitzat la llista, mostra un error. Sino, mostra les informacions
                     if (!vehicles.isEmpty()) {
@@ -73,16 +77,19 @@ public class Main {
                     }
                     break;
 
+                // Permet crear el JSON de vehicles
                 case 'e':
                     GestionaLlistes.crearVehicles();
                     stop();
                     break;
 
+                // Permet crear el JSON de persones
                 case 'f':
                     GestionaLlistes.crearPersonas();
                     stop();
                     break;
 
+                // Surt
                 case 'g':
                     System.out.println("Sortint...");
                     stop();
