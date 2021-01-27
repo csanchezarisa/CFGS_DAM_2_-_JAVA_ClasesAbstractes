@@ -8,57 +8,63 @@ import TipusDada.Vehicle.Vehicle;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import TipusDada.Persona.*;
 
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestionaLlistes {
 
-    private static String vehiclesJsonPath = GestionaLlistes.class.getResource("vehicles.json").getPath();
-    private static String personesJsonPath = GestionaLlistes.class.getResource("people.json").getPath();
+    private static final String vehiclesJsonPath = GestionaLlistes.class.getResource("vehicles.json").getPath();
+    private static final String personesJsonPath = GestionaLlistes.class.getResource("people.json").getPath();
 
     /** Crea un arraylist de persones
      * @return ArrayList de persones */
-    public static ArrayList<Persona> getPersonas() throws IOException, ParseException {
-
-        // Lectura del fitxer i parse a JSON
-        Object obj = new JSONParser().parse(new FileReader(personesJsonPath));
-        JSONArray jsonArray = (JSONArray) obj;
+    public static ArrayList<Persona> getPersonas() {
 
         // Creació de l'arraylist de Persones
         ArrayList<Persona> personas = new ArrayList<>();
 
-        // Recorre l'array JSON llegit, amb el contingut de les persones.
-        // Va creant persones i afegint-les a l'arraylist
-        for (Object object:
-             jsonArray) {
+        // Tot dins del TRY/CATCH per si hi ha algún problema amb la lectura del fitxer
+        try {
 
-            // Es converteix d'Objecte a JSONObject
-            JSONObject personaJson = (JSONObject) object;
+            // Lectura del fitxer i parse a JSON
+            Object obj = new JSONParser().parse(new FileReader(personesJsonPath));
+            JSONArray jsonArray = (JSONArray) obj;
 
-            // Pasa a JSON el camp data, per poder recuperar els valors
-            JSONObject dataJson = (JSONObject) personaJson.get("data");
+            // Recorre l'array JSON llegit, amb el contingut de les persones.
+            // Va creant persones i afegint-les a l'arraylist
+            for (Object object:
+                    jsonArray) {
 
-            // Amb les dades del dataJson, es crea un objecte del tipus DataClass
-            DataClass data = new DataClass(
-                    Integer.parseInt(dataJson.get("dia").toString()),
-                    Integer.parseInt(dataJson.get("mes").toString()),
-                    Integer.parseInt(dataJson.get("any").toString())
-            );
+                // Es converteix d'Objecte a JSONObject
+                JSONObject personaJson = (JSONObject) object;
 
-            // Crea la persona i l'afegeix a l'ArrayList
-            personas.add(new Persona(
-                    (String) personaJson.get("nif").toString(),
-                    personaJson.get("nom").toString(),
-                    data,
-                    personaJson.get("especialitatVehicle").toString().charAt(0),
-                    false
-                    ));
+                // Pasa a JSON el camp data, per poder recuperar els valors
+                JSONObject dataJson = (JSONObject) personaJson.get("data");
+
+                // Amb les dades del dataJson, es crea un objecte del tipus DataClass
+                DataClass data = new DataClass(
+                        Integer.parseInt(dataJson.get("dia").toString()),
+                        Integer.parseInt(dataJson.get("mes").toString()),
+                        Integer.parseInt(dataJson.get("any").toString())
+                );
+
+                // Crea la persona i l'afegeix a l'ArrayList
+                personas.add(new Persona(
+                        personaJson.get("nif").toString(),
+                        personaJson.get("nom").toString(),
+                        data,
+                        personaJson.get("especialitatVehicle").toString().charAt(0),
+                        false
+                ));
+            }
+
+        }
+        catch (Exception e) {
+            System.out.println("No s'ha pogut lleguir el fitxer. Retornant un llistat buit...");
         }
 
         return personas;
@@ -67,100 +73,108 @@ public class GestionaLlistes {
 
     /** Llegeix el fitxer JSON de vehicles i en retorna un ArrayList d'objectes
      * @return ArrayList de vehicles */
-    public static ArrayList<Vehicle> getVehicles() throws IOException, ParseException {
-
-        // Lectura del fitxer i parse a JSON
-        Object obj = new JSONParser().parse(new FileReader(vehiclesJsonPath));
-        JSONObject jsonObject = (JSONObject) obj;
+    public static ArrayList<Vehicle> getVehicles() {
 
         // Creació de l'arraylist de Vehicles
         ArrayList<Vehicle> vehicles = new ArrayList<>();
 
-        // S'obtenen els vehicles Marítims i es passen a JSONArray
-        JSONArray jsonArray = (JSONArray) jsonObject.get("maritims");
+        // Tot dins del TRY/CATCH per si hi ha algún problema amb la lectura del fitxer
+        try {
 
-        // Es recorre l'array amb els vehicles marítims
-        for (Object object:
-             jsonArray) {
+            // Lectura del fitxer i parse a JSON
+            Object obj = new JSONParser().parse(new FileReader(vehiclesJsonPath));
+            JSONObject jsonObject = (JSONObject) obj;
 
-            // Es passa l'element a tipus JSON
-            JSONObject vehicleJSON = (JSONObject) object;
+            // S'obtenen els vehicles Marítims i es passen a JSONArray
+            JSONArray jsonArray = (JSONArray) jsonObject.get("maritims");
 
-            // Es recupera la data de l'element i es passa a JSON per poder tractar-la
-            JSONObject dataJson =  (JSONObject) vehicleJSON.get("data");
+            // Es recorre l'array amb els vehicles marítims
+            for (Object object:
+                    jsonArray) {
 
-            // Amb les dades recuperades es crea una data del tipus personalitzada
-            DataClass data = new DataClass(
-                    Integer.parseInt(dataJson.get("dia").toString()),
-                    Integer.parseInt(dataJson.get("mes").toString()),
-                    Integer.parseInt(dataJson.get("any").toString())
-            );
+                // Es passa l'element a tipus JSON
+                JSONObject vehicleJSON = (JSONObject) object;
 
-            // Es crea un vehicle del tipus Marítim i s'afageix a l'ArrayList de vehicles
-            vehicles.add(new Maritim(
-                    Double.parseDouble(vehicleJSON.get("consumMinim").toString()),
-                    Double.parseDouble(vehicleJSON.get("carregaActual").toString()),
-                    Double.parseDouble(vehicleJSON.get("capacitatMaxima").toString()),
-                    Double.parseDouble(vehicleJSON.get("consum").toString()),
-                    vehicleJSON.get("tipusVehicle").toString().charAt(0),
-                    vehicleJSON.get("identificador").toString(),
-                    Double.parseDouble(vehicleJSON.get("velocitatMitja").toString()),
-                    "",
-                    Integer.parseInt(vehicleJSON.get("eslora").toString()),
-                    Integer.parseInt(vehicleJSON.get("manega").toString()),
-                    Integer.parseInt(vehicleJSON.get("anyFlotacio").toString()),
-                    data
-            ));
+                // Es recupera la data de l'element i es passa a JSON per poder tractar-la
+                JSONObject dataJson =  (JSONObject) vehicleJSON.get("data");
+
+                // Amb les dades recuperades es crea una data del tipus personalitzada
+                DataClass data = new DataClass(
+                        Integer.parseInt(dataJson.get("dia").toString()),
+                        Integer.parseInt(dataJson.get("mes").toString()),
+                        Integer.parseInt(dataJson.get("any").toString())
+                );
+
+                // Es crea un vehicle del tipus Marítim i s'afageix a l'ArrayList de vehicles
+                vehicles.add(new Maritim(
+                        Double.parseDouble(vehicleJSON.get("consumMinim").toString()),
+                        Double.parseDouble(vehicleJSON.get("carregaActual").toString()),
+                        Double.parseDouble(vehicleJSON.get("capacitatMaxima").toString()),
+                        Double.parseDouble(vehicleJSON.get("consum").toString()),
+                        vehicleJSON.get("tipusVehicle").toString().charAt(0),
+                        vehicleJSON.get("identificador").toString(),
+                        Double.parseDouble(vehicleJSON.get("velocitatMitja").toString()),
+                        "",
+                        Integer.parseInt(vehicleJSON.get("eslora").toString()),
+                        Integer.parseInt(vehicleJSON.get("manega").toString()),
+                        Integer.parseInt(vehicleJSON.get("anyFlotacio").toString()),
+                        data
+                ));
+            }
+
+            // Es recuperen els vehicles terrestres i es pasen a JSONArray
+            jsonArray = (JSONArray) jsonObject.get("terrestres");
+
+            for (Object object:
+                    jsonArray) {
+
+                // Es passa l'element a tipus JSON per poder treballar amb ell
+                JSONObject vehicleJSON = (JSONObject) object;
+
+                // Es crea un vehicle del tipus Terrestre i s'afegeix a la llista
+                vehicles.add(new Terrestre(
+                        Double.parseDouble(vehicleJSON.get("consumMinim").toString()),
+                        Double.parseDouble(vehicleJSON.get("carregaActual").toString()),
+                        Double.parseDouble(vehicleJSON.get("capacitatMaxima").toString()),
+                        Double.parseDouble(vehicleJSON.get("consum").toString()),
+                        vehicleJSON.get("tipusVehicle").toString().charAt(0),
+                        vehicleJSON.get("identificador").toString(),
+                        Double.parseDouble(vehicleJSON.get("velocitatMitja").toString()),
+                        "",
+                        Integer.parseInt(vehicleJSON.get("numeroCavalls").toString()),
+                        Integer.parseInt(vehicleJSON.get("numeroAveries").toString()),
+                        Integer.parseInt(vehicleJSON.get("costAveries").toString())
+                ));
+
+            }
+
+            // Es recuperen els vehicles aeris i es passen a JSONArray
+            jsonArray = (JSONArray) jsonObject.get("aeris");
+
+            for (Object object:
+                    jsonArray) {
+
+                // Es passa l'element a tipus JSON per poder treballar amb ell
+                JSONObject vehicleJSON = (JSONObject) object;
+
+                // Es crea un vehicle de la clase Aeri i s'afageix al llistat de vehicles
+                vehicles.add(new Aeri(
+                        Double.parseDouble(vehicleJSON.get("consumMinim").toString()),
+                        Double.parseDouble(vehicleJSON.get("carregaActual").toString()),
+                        Double.parseDouble(vehicleJSON.get("capacitatMaxima").toString()),
+                        Double.parseDouble(vehicleJSON.get("consum").toString()),
+                        vehicleJSON.get("tipusVehicle").toString().charAt(0),
+                        vehicleJSON.get("identificador").toString(),
+                        Double.parseDouble(vehicleJSON.get("velocitatMitja").toString()),
+                        "",
+                        Integer.parseInt(vehicleJSON.get("numeroMotors").toString()),
+                        Integer.parseInt(vehicleJSON.get("tempsFuncionament").toString())
+                ));
+            }
+
         }
-
-        // Es recuperen els vehicles terrestres i es pasen a JSONArray
-        jsonArray = (JSONArray) jsonObject.get("terrestres");
-
-        for (Object object:
-                jsonArray) {
-
-            // Es passa l'element a tipus JSON per poder treballar amb ell
-            JSONObject vehicleJSON = (JSONObject) object;
-
-            // Es crea un vehicle del tipus Terrestre i s'afegeix a la llista
-            vehicles.add(new Terrestre(
-                    Double.parseDouble(vehicleJSON.get("consumMinim").toString()),
-                    Double.parseDouble(vehicleJSON.get("carregaActual").toString()),
-                    Double.parseDouble(vehicleJSON.get("capacitatMaxima").toString()),
-                    Double.parseDouble(vehicleJSON.get("consum").toString()),
-                    vehicleJSON.get("tipusVehicle").toString().charAt(0),
-                    vehicleJSON.get("identificador").toString(),
-                    Double.parseDouble(vehicleJSON.get("velocitatMitja").toString()),
-                    "",
-                    Integer.parseInt(vehicleJSON.get("numeroCavalls").toString()),
-                    Integer.parseInt(vehicleJSON.get("numeroAveries").toString()),
-                    Integer.parseInt(vehicleJSON.get("costAveries").toString())
-            ));
-
-        }
-
-        // Es recuperen els vehicles aeris i es passen a JSONArray
-        jsonArray = (JSONArray) jsonObject.get("aeris");
-
-        for (Object object:
-             jsonArray) {
-
-            // Es passa l'element a tipus JSON per poder treballar amb ell
-            JSONObject vehicleJSON = (JSONObject) object;
-
-            // Es crea un vehicle de la clase Aeri i s'afageix al llistat de vehicles
-            vehicles.add(new Aeri(
-                    Double.parseDouble(vehicleJSON.get("consumMinim").toString()),
-                    Double.parseDouble(vehicleJSON.get("carregaActual").toString()),
-                    Double.parseDouble(vehicleJSON.get("capacitatMaxima").toString()),
-                    Double.parseDouble(vehicleJSON.get("consum").toString()),
-                    vehicleJSON.get("tipusVehicle").toString().charAt(0),
-                    vehicleJSON.get("identificador").toString(),
-                    Double.parseDouble(vehicleJSON.get("velocitatMitja").toString()),
-                    "",
-                    Integer.parseInt(vehicleJSON.get("numeroMotors").toString()),
-                    Integer.parseInt(vehicleJSON.get("tempsFuncionament").toString())
-            ));
+        catch (Exception e) {
+            System.out.println("No s'ha pogut llegir el fitxer. Retornant un llistat buit...");
         }
 
         // Es retorna el llistat de vehicles
@@ -177,6 +191,42 @@ public class GestionaLlistes {
             vehicle.mostrarInformacio();
             Thread.sleep(1000);
         }
+    }
+
+    /** Recorre el llistat de vehicles, assignant-hi persones disponibles
+     * @param vehicles ArrayList de vehicles, als quals assignar tripulants
+     * @param personas ArrayList de persones per poder ser assignades
+     * @return ArrayList de vehicles amb les modificacions*/
+    public static ArrayList<Vehicle> assignarTripulants(ArrayList<Vehicle> vehicles, ArrayList<Persona> personas) {
+
+        // Recorre l'ArrayList de vehicles
+        for (Vehicle vehicle:
+             vehicles) {
+
+            // Comprova si el vehicle no té cap tripulant assignat
+            if (vehicle.getIdentificadorTripulant().length() <= 0) {
+
+                // Recorre l'ArrayList de personas, per veure si hi pot assignar a algú
+                for (Persona persona:
+                     personas) {
+
+                    // Comprova que l'especialitat i el tipus de vehicle coincideixen i que la persona no està assignada a cap altre vehicle
+                    if (persona.getEspecialitatVehicle() == vehicle.getTipusVehicle() && !persona.isAssignat()) {
+
+                        // Assigna la persona al vehicle analitzat
+                        vehicle.setIdentificadorTripulant( persona.getNif() );
+                        persona.setAssignat(true);
+
+                        break;
+                    }
+
+                }
+
+            }
+
+        }
+
+        return vehicles;
     }
 
     /** Va demanant les dades de les persones per després crear
@@ -223,8 +273,7 @@ public class GestionaLlistes {
             }
 
 
-            System.out.println("Creant la data de naixement");
-            System.out.println("Introdueix el dia:");
+            System.out.println("Creant la data de naixement\nIntrodueix el dia:");
             try {
                 dia = teclat.nextInt();
             }
@@ -308,21 +357,10 @@ public class GestionaLlistes {
             }
 
             switch (seleccio) {
-                case 'm':
-                    maritims.add(crearMaritim());
-                    break;
-
-                case 'a':
-                    aeris.add(crearAeri());
-                    break;
-
-                case 't':
-                    terrestre.add(crearTerrestre());
-                    break;
-
-                case 'q':
-                    sortir = true;
-                    break;
+                case 'm' -> maritims.add(crearMaritim());
+                case 'a' -> aeris.add(crearAeri());
+                case 't' -> terrestre.add(crearTerrestre());
+                case 'q' -> sortir = true;
             }
 
         }
@@ -338,7 +376,7 @@ public class GestionaLlistes {
         }
         catch (Exception e) {
             System.out.println("No s'ha pogut crear el fitxer...");
-            System.out.println(e);
+            System.out.println(e.toString());
         }
 
     }

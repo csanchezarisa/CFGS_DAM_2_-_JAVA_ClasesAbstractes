@@ -44,6 +44,18 @@ public abstract class Vehicle {
         this.consum = consum;
     }
 
+    public String getIdentificadorTripulant() {
+        return identificadorTripulant;
+    }
+
+    public void setIdentificadorTripulant(String identificadorTripulant) {
+        this.identificadorTripulant = identificadorTripulant;
+    }
+
+    public char getTipusVehicle() {
+        return tipusVehicle;
+    }
+
     public abstract double calcularConsum();
 
 }

@@ -22,4 +22,20 @@ public class Persona {
         this.especialitatVehicle = especialitatVehicle;
         this.assignat = assignat;
     }
+
+    public char getEspecialitatVehicle() {
+        return especialitatVehicle;
+    }
+
+    public boolean isAssignat() {
+        return assignat;
+    }
+
+    public void setAssignat(boolean assignat) {
+        this.assignat = assignat;
+    }
+
+    public String getNif() {
+        return nif;
+    }
 }

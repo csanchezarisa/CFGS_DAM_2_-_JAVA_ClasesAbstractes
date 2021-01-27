@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static ArrayList<Persona> personas;
-    private static ArrayList<Vehicle> vehicles;
+    private static ArrayList<Persona> personas = new ArrayList<>();
+    private static ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     public static void main(String[] args) throws IOException, ParseException, InterruptedException {
         menuPrincipal();
@@ -19,7 +19,7 @@ public class Main {
 
     /* .: 1. MENÚ PRINCIPAL :. */
     /** Mostra el menú principal i permet treballar amb ell */
-    private static void menuPrincipal() throws InterruptedException, IOException, ParseException {
+    private static void menuPrincipal() throws InterruptedException {
         Scanner teclat = new Scanner(System.in);
         char seleccio;
         do {
@@ -37,6 +37,13 @@ public class Main {
                     break;
 
                 case 'c':
+                    if (!vehicles.isEmpty()) {
+                        vehicles = GestionaLlistes.assignarTripulants(vehicles, personas);
+                    }
+                    else {
+                        System.out.println("No hi ha cap vehicle inicialitzat! Inicialitza'n algún primer.");
+                        stop();
+                    }
                     break;
 
                 case 'd':
