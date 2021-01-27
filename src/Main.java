@@ -30,10 +30,24 @@ public class Main {
             switch (seleccio) {
                 case 'a':
                     vehicles = GestionaLlistes.getVehicles();
+
+                    if (!vehicles.isEmpty())
+                        System.out.println("S'han capturat correctament " + vehicles.size() + " vehicles");
+                    else
+                        System.out.println("No s'han pogut capturar els vehicles. Existeix el fitxer?");
+
+                    stop();
                     break;
 
                 case 'b':
                     personas = GestionaLlistes.getPersonas();
+
+                    if (!personas.isEmpty())
+                        System.out.println("S'han capturat correctament " + personas.size() + " persones");
+                    else
+                        System.out.println("No s'han pogut capturar les persones. Existeix el fitxer?");
+
+                    stop();
                     break;
 
                 case 'c':

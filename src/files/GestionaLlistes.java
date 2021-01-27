@@ -189,7 +189,7 @@ public class GestionaLlistes {
         for (Vehicle vehicle:
              vehicles) {
             vehicle.mostrarInformacio();
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         }
     }
 
