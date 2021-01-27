@@ -16,10 +16,6 @@ public class DataClass {
         return dia;
     }
 
-    public void setDia(int dia) {
-        this.dia = dia;
-    }
-
     public int getMes() {
         return mes;
     }

@@ -22,22 +22,6 @@ public class Aeri extends Vehicle {
         System.out.println();
     }
 
-    public int getNumeroMotors() {
-        return numeroMotors;
-    }
-
-    public void setNumeroMotors(int numeroMotors) {
-        this.numeroMotors = numeroMotors;
-    }
-
-    public int getTempsFuncionament() {
-        return tempsFuncionament;
-    }
-
-    public void setTempsFuncionament(int tempsFuncionament) {
-        this.tempsFuncionament = tempsFuncionament;
-    }
-
     @Override
     public double calcularConsum() {
         return consumMinim + ((carregaActual / capacitatMaxima) * consum) + (numeroMotors * tempsFuncionament);

@@ -46,22 +46,6 @@ public class Maritim extends Vehicle {
         this.manega = manega;
     }
 
-    public int getAnyFlotacio() {
-        return anyFlotacio;
-    }
-
-    public void setAnyFlotacio(int anyFlotacio) {
-        this.anyFlotacio = anyFlotacio;
-    }
-
-    public DataClass getDataClassConstrucció() {
-        return dataConstruccio;
-    }
-
-    public void setDataClassConstrucció(DataClass DataClassConstrucció) {
-        this.dataConstruccio = DataClassConstrucció;
-    }
-
     @Override
     public double calcularConsum() {
         return consumMinim + ((carregaActual / capacitatMaxima) * consum) + (eslora + manega + anyFlotacio) - (dataConstruccio.getDia()) + dataConstruccio.getMes() + dataConstruccio.getAny();

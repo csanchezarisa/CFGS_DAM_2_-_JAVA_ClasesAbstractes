@@ -11,7 +11,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import TipusDada.Persona.*;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -168,7 +167,11 @@ public class GestionaLlistes {
         return vehicles;
     }
 
+    /** Recorre l'ArrayList passat de vehicles, mostrant la informació dels objectes que conté
+     * @param vehicles ArrayList de vehicles dels quals mostrar la informació */
     public static void mostrarInformacioVehicles(ArrayList<Vehicle> vehicles) throws InterruptedException {
+
+        // De cada objecte Vehicle dins de l'ArrayList, executa el seu mètode mostrarInformacio()
         for (Vehicle vehicle:
              vehicles) {
             vehicle.mostrarInformacio();

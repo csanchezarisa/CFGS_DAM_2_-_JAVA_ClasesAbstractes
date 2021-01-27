@@ -36,68 +36,12 @@ public abstract class Vehicle {
         System.out.println("\t- Identificador tripulant: " + identificadorTripulant);
     }
 
-    public double getConsumMinim() {
-        return consumMinim;
-    }
-
-    public void setConsumMinim(double consumMinim) {
-        this.consumMinim = consumMinim;
-    }
-
-    public double getCarregaActual() {
-        return carregaActual;
-    }
-
-    public void setCarregaActual(double carregaActual) {
-        this.carregaActual = carregaActual;
-    }
-
-    public double getCapacitatMaxima() {
-        return capacitatMaxima;
-    }
-
-    public void setCapacitatMaxima(double capacitatMaxima) {
-        this.capacitatMaxima = capacitatMaxima;
-    }
-
     public double getConsum() {
         return consum;
     }
 
     public void setConsum(double consum) {
         this.consum = consum;
-    }
-
-    public char getTipusVehicle() {
-        return tipusVehicle;
-    }
-
-    public void setTipusVehicle(char tipusVehicle) {
-        this.tipusVehicle = tipusVehicle;
-    }
-
-    public String getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
-    }
-
-    public double getVelocitatMitja() {
-        return velocitatMitja;
-    }
-
-    public void setVelocitatMitja(double velocitatMitja) {
-        this.velocitatMitja = velocitatMitja;
-    }
-
-    public String getIdentificadorTripulant() {
-        return identificadorTripulant;
-    }
-
-    public void setIdentificadorTripulant(String identificadorTripulant) {
-        this.identificadorTripulant = identificadorTripulant;
     }
 
     public abstract double calcularConsum();
